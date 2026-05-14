@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+
+# 模型和数据集（大文件，不上传）
+j_so101_sim2real_touch/models/
+j_so101_sim2real_touch/datasets/
+j_so101_sim2real_touch/data/
+j_so101_sim2real_touch/outputs/
+
+# 文档源文件（内容已整理到 踩坑文档/ 和 流程文档/）
+j_so101_sim2real_touch/docs/
+
+# PyTorch / Checkpoint
+*.pth
+*.pt
+*.ckpt
+*.bin
+*.safetensors
+
+# HDF5 数据集
+*.hdf5
+*.h5
+
+# Isaac Sim 场景缓存
+j_so101_sim2real_touch/scene/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+wandb/
+tensorboard/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ROS / ROS 2
+rosdep/
+.cache/
