@@ -15,6 +15,9 @@ j_so101_sim2real_touch/outputs/
 # 文档源文件（内容已整理到 踩坑文档/ 和 流程文档/）
 j_so101_sim2real_touch/docs/
 
+# 内部参考文档，不上传到公开仓库
+doc/
+
 # PyTorch / Checkpoint
 *.pth
 *.pt

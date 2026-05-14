@@ -30,11 +30,6 @@ ws/
 │   ├── 06-training.md           ← 6. 模型训练
 │   ├── 07-inference.md          ← 7. 模型推理
 │   └── 08-summary.md            ← 8. 项目总结
-├── doc/                         ← 项目框架与环境文档
-│   ├── README.md
-│   ├── ENVIRONMENT.md
-│   ├── LEROBOT_MODIFICATIONS.md
-│   └── THIRDPARTY_MODIFICATIONS.md
 └── j_so101_sim2real_touch/      ← 源码（模型/数据集不上传）
     ├── src/                     ← 核心源码（45 个文件）
     ├── configs/                 ← 配置文件
@@ -78,7 +73,6 @@ ws/
 - 遇到了问题 → [踩坑文档/](踩坑文档/pitfalls.md)
 - 想了解项目流程 → [流程文档/workflow.md](流程文档/workflow.md)
 - 想看源码 → [j_so101_sim2real_touch/src/](j_so101_sim2real_touch/src/)
-- 环境配置 → [doc/ENVIRONMENT.md](doc/ENVIRONMENT.md)
 
 ## 参考项目
 
