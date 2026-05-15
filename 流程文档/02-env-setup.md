@@ -83,12 +83,31 @@ export IsaacSim_ROOT=~/isaacsim/Assets/Assets/Isaac/5.1
 | 主臂 | `/dev/ttySO101_LEADER` | 真机主臂（遥操作控制） |
 | 从臂 | `/dev/ttySO101_FOLLOWER` | 真机从臂 |
 
-## GPU
+## 硬件环境
 
-NVIDIA RTX 5070 12GB，用于模型训练和推理。
+| 组件 | 型号/规格 |
+|---|---|
+| GPU | NVIDIA GeForce RTX 5070 (12GB GDDR7) |
+| 驱动版本 | 580.126.20 |
+| CUDA | 12.8 |
+| CPU | AMD Ryzen 7 3700X (8核16线程) |
+| 内存 | 96GB DDR4 3200MHz |
+| 操作系统 | Ubuntu 22.04 |
+| Python | 3.11 (isaaclab) / 3.12 (lerobot) |
+| PyTorch | 2.7.0+cu128 |
+
+**显存说明**：RTX 5070 12GB 刚好够用。Isaac Lab 训练时需要适当减少并行环境数（16-32）。SmolVLA 训练使用 `train_expert_only=true` + `use_amp=true` 后，batch_size=36 可以正常运行。
 
 ## 常见环境问题
 
 1. **DISPLAY 未设置**：Isaac Sim 需要 GUI 才能接收键盘事件，必须 `export DISPLAY=:0`
-2. **USD 缓存**：修改 URDF 后需清理缓存 `rm -rf /tmp/IsaacLab/`
+2. **USD 缓存**：修改 URDF 后需清理两处缓存
+   ```bash
+   rm -rf /tmp/IsaacLab/
+   rm -rf ~/.local/share/isaaclab/usd_cache/
+   ```
 3. **GPU 显存不足**：确认之前 Isaac Sim 进程已完全退出
+   ```bash
+   pkill -9 isaac-sim
+   nvidia-smi  # 确认显存已释放
+   ```

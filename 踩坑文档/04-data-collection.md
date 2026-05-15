@@ -16,7 +16,42 @@ gripper_real = joint_pos_from_leader[5]   # -0.94 ~ 0.94
 gripper_sim = map_range(gripper_real, -0.94, 0.94, -0.17, 1.75)
 ```
 
-具体校准值参考 `/home/jer/ws_issac/ws/j_so101_sim2real_touch/docs/calibration/CALIBRATION_DATA.md`。
+具体校准值参考：
+
+**真机校准原始值**（来自 `j_leader.json`，12位编码器范围 0-4095）：
+
+| 关节 | ID | range_min | range_max | homing_offset |
+|---|---|---|---|---|
+| shoulder_pan | 1 | 725 | 3283 | -334 |
+| shoulder_lift | 2 | 926 | 3307 | 271 |
+| elbow_flex | 3 | 803 | 3011 | -534 |
+| wrist_flex | 4 | 866 | 3201 | -111 |
+| wrist_roll | 5 | 1174 | 4991 | -645 |
+| gripper | 6 | 1466 | 2691 | 237 |
+
+**LeRobot 原始值 → 角度转换公式**：
+```python
+mid = (range_min + range_max) / 2
+max_res = 4095  # 12位编码器
+angle_deg = (val - mid) * 360 / max_res
+# 角度 → 弧度
+angle_rad = angle_deg * pi / 180
+```
+
+**转换后的弧度范围（实际限位）**：
+
+| 关节 | 弧度范围 | 角度范围 |
+|---|---|---|
+| shoulder_pan | -1.99 ~ 1.96 | -114° ~ 112° |
+| shoulder_lift | -1.82 ~ 1.83 | -105° ~ 105° |
+| elbow_flex | -1.69 ~ 1.69 | -97° ~ 97° |
+| wrist_flex | -1.79 ~ 1.79 | -103° ~ 103° |
+| wrist_roll | -1.46 ~ 2.92 | -84° ~ 167° |
+| gripper | -0.94 ~ 0.94 | -54° ~ 54° |
+
+校准文件路径：
+- 主臂：`~/.cache/huggingface/lerobot/calibration/teleoperators/so_leader/j_leader.json`
+- 从臂：`~/.cache/huggingface/lerobot/calibration/robots/so_follower/j_follower.json`
 
 ---
 
@@ -32,7 +67,8 @@ gripper_sim = map_range(gripper_real, -0.94, 0.94, -0.17, 1.75)
 统一设定 640×480：
 ```python
 camera_cfg = CameraCfg(
-    resolution=(640, 480),
+    height=480,
+    width=640,
     fps=30,
 )
 ```

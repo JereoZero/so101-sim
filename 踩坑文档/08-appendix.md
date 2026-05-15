@@ -6,14 +6,13 @@
 ```bash
 export DISPLAY=:0
 cd /home/jer/ws_issac/thirdparty/IsaacLab
-conda activate isaaclab
+conda activate lerobot_issac
 export ISAACSIM_ASSETS_PATH=~/isaacsim/Assets/Assets/Isaac/5.1
 ./isaaclab.sh -p <script.py> --enable_cameras
 ```
 
 ### 训练命令模板
 ```bash
-cd /home/jer/ws_issac/thirdparty/IsaacLab
 conda activate lerobot
 HF_HUB_OFFLINE=1 lerobot-train \
     --policy.path=<base_model> \
@@ -44,7 +43,7 @@ kill -9 <PID>
 # 查看端口占用
 lsof -i:9877
 # 清理 USD 缓存
-rm -rf /tmp/IsaacLab/
+rm -rf /tmp/IsaacLab/ ~/.local/share/isaaclab/usd_cache/
 ```
 
 ---
@@ -110,7 +109,8 @@ rm -rf /tmp/IsaacLab/
 
 | 环境 | 用途 |
 |---|---|
-| `isaaclab` | 仿真 |
+| `isaaclab` | Isaac Sim + Isaac Lab |
+| `lerobot_issac` | 仿真运行（含 LeRobot） |
 | `lerobot` | 训练 + 推理服务器 |
 
 ---

@@ -6,7 +6,7 @@ SmolVLA 推理采用 **TCP 客户端-服务器** 架构：
 
 ```
 ┌──────────────────────────┐      ┌──────────────────────────┐
-│  终端1: lerobot 环境     │      │  终端2: isaaclab 环境    │
+│  终端1: lerobot 环境     │      │  终端2: lerobot_issac 环境 │
 │  smolvla_inference_      │      │  smolvla_inference_      │
 │  server.py               │      │  client.py               │
 │                          │      │                          │
@@ -26,12 +26,12 @@ conda activate lerobot
 python /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/smolvla_inference_server.py
 ```
 
-### 终端2 — 仿真客户端（isaaclab 环境）
+### 终端2 — 仿真客户端（lerobot_issac 环境）
 
 ```bash
 export DISPLAY=:0
 cd /home/jer/ws_issac/thirdparty/IsaacLab
-conda activate isaaclab
+conda activate lerobot_issac
 export ISAACSIM_ASSETS_PATH=~/isaacsim/Assets/Assets/Isaac/5.1
 ./isaaclab.sh -p /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/smolvla_inference_client.py --enable_cameras
 ```
@@ -104,7 +104,7 @@ action_list = action_chunk.flatten().tolist()  # 返回完整 chunk
 - 推理请求过多导致卡顿
 - 浪费了 chunk 预测的优势
 
-**修复后**：服务器返回完整 50 步 chunk，客户端队列管理，10Hz 推理 + 30Hz 执行。
+**修复后**：服务器返回完整 50 步 chunk，客户端队列管理 + receding horizon，30Hz 执行。
 
 ## 推理参数
 
@@ -121,6 +121,6 @@ action_list = action_chunk.flatten().tolist()  # 返回完整 chunk
 
 ## 常见问题
 
-1. **机械臂不动**：清理 USD 缓存 `rm -rf /tmp/IsaacLab/`
+1. **机械臂不动**：清理 USD 缓存 `rm -rf /tmp/IsaacLab/ ~/.local/share/isaaclab/usd_cache/`
 2. **动作卡顿**：检查推理频率和 chunk_size 配置
 3. **模型加载失败**：确认 `HF_HUB_OFFLINE=1` 和 `pretrained_model` 目录存在

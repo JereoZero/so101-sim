@@ -50,7 +50,7 @@ init_state = ArticulationCfg.InitialStateCfg(
 ### 原因
 URDF 关节名称与代码中使用的名称不匹配。
 
-### S0-101 6 个关节名称：
+### SO101 6 个关节名称：
 ```
 shoulder_pan
 shoulder_lift
@@ -70,7 +70,7 @@ gripper
 机械臂在某些角度下运动异常、卡顿甚至崩溃。
 
 ### 原因
-`enabled_self_collisions=True` 时，机械臂的连杆之间会相互碰撞检测。复现真机的碰撞限制。
+`enabled_self_collisions=True` 时，机械臂的连杆之间会进行碰撞检测，防止关节穿透自身。
 
 ### 解决
 在 `so_arm101.py` 配置中：

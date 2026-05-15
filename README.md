@@ -16,7 +16,7 @@ ws/
 │   ├── 02-urdf-import.md        ← 2. SO101 URDF 导入与适配
 │   ├── 03-robot-control.md      ← 3. 仿真中 SO101 运动控制
 │   ├── 04-data-collection.md    ← 4. 仿真数据录制
-│   ├── 05-dataset-convert.md    ← 5. ACT → SmolVLA 数据集转换
+│   └── 05-dataset-convert.md    ← 5. 数据集格式转换
 │   ├── 06-model-training.md     ← 6. SmolVLA 模型训练
 │   ├── 07-inference.md          ← 7. SmolVLA 模型推理
 │   └── 08-appendix.md           ← 附录（命令、路径、参数速查）
@@ -26,7 +26,7 @@ ws/
 │   ├── 02-env-setup.md          ← 2. 环境搭建
 │   ├── 03-sim-scene.md          ← 3. 仿真场景搭建
 │   ├── 04-teleop-data.md        ← 4. 遥操作与数据录制
-│   ├── 05-dataset-preprocess.md ← 5. 数据集预处理
+│   └── 05-dataset-preprocess.md ← 5. 数据集预处理
 │   ├── 06-training.md           ← 6. 模型训练
 │   ├── 07-inference.md          ← 7. 模型推理
 │   └── 08-summary.md            ← 8. 项目总结
@@ -56,14 +56,14 @@ ws/
 | 仿真 | Isaac Sim + Isaac Lab |
 | 算法 | SmolVLA（Vision-Language-Action） |
 | 框架 | LeRobot v0.5.0 |
-| 机器人 | 幻尔 SO101 机械臂（仿真 URDF） |
+| 机器人 | SO101 六轴机械臂（仿真 URDF） |
 | 感知 | 双摄像头（腕部 + 第三视角，640x480 RGB） |
 | GPU | NVIDIA RTX 5070 12GB |
 
 ### 项目亮点
 
 - **全仿真闭环**：场景搭建 → 遥操作 → 数据录制 → 训练 → 推理全在仿真中完成
-- **SmolVLA 跨范式迁移**：先用 ACT 录制数据，再转换为 SmolVLA 格式训练
+- **跨范式数据复用**：遥操作录制一次数据，可同时用于 ACT 和 SmolVLA 训练
 - **多版本迭代**：v0 → v1 → v4 → v5 → v6 → v7，持续优化训练策略
 - **推理优化**：30Hz receding horizon 推理 + chunk 队列管理
 - **仿真特有坑**：关节驱动配置、摄像头参数、物理引擎调优

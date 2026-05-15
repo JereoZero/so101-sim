@@ -1,50 +1,12 @@
-# 踩坑记录 — 索引
+# 踩坑文档索引
 
-本文档汇总 SO101 仿真项目中遇到的关键问题和解决方案，按章节划分。
+仿真项目全过程踩坑记录，按章节拆分：
 
----
-
-## [01 — Isaac Lab 环境搭建](01-isaaclab-env.md)
-- Isaac Sim 安装与配置
-- Isaac Lab 依赖安装
-- Conda 环境管理
-- Display 显示问题
-
-## [02 — SO101 URDF 导入与适配](02-urdf-import.md)
-- URDF 路径与格式问题
-- 关节名称映射
-- 坐标系对齐
-
-## [03 — 仿真中 SO101 运动控制](03-robot-control.md)
-- 关节驱动参数配置 (stiffness/damping/max_force)
-- 关节角度限制与裁剪
-- PD 控制器调参
-- 关节默认位置与初始化
-
-## [04 — 仿真数据录制](04-data-collection.md)
-- 摄像头配置 (分辨率和帧率)
-- 遥操作数据录制流程
-- 数据质量检查
-
-## [05 — ACT → SmolVLA 数据集转换](05-dataset-convert.md)
-- ACT 数据集结构
-- LeRobot modify_tasks() 使用
-- SmolVLA 格式转换脚本
-
-## [06 — SmolVLA 模型训练](06-model-training.md)
-- 训练参数配置
-- 学习率选择
-- 数据增强开关
-- 训练中断与续训
-- 基础模型选择
-
-## [07 — SmolVLA 模型推理](07-inference.md)
-- **Chunk Size 问题（关键）**：服务器只返回第一步动作导致推理卡顿
-- TCP 通信架构
-- receding horizon 推理策略
-- 推理频率调优
-
-## [08 — 附录](08-appendix.md)
-- 常用命令速查
-- 路径速查
-- 参数速查
+1. [Isaac Lab 环境搭建](01-isaaclab-env.md) — DISPLAY、USD 缓存、HF_HUB_OFFLINE、conda 环境、资源路径、GPU 问题
+2. [SO101 URDF 导入与适配](02-urdf-import.md) — URDF 路径、坐标系对齐、关节命名、self_collision
+3. [仿真中 SO101 运动控制](03-robot-control.md) — stiffness=0、关节限位、夹爪扭矩、stuttering、单帧控制、摄像头朝向、物理材质调优、空气碰撞、穿透、LeRobot 源码修改
+4. [仿真数据录制](04-data-collection.md) — 夹爪映射、摄像头分辨率、帧率、文件大小、TCP 粘包、随机化失败、校准数据
+5. [数据集格式转换](05-dataset-convert.md) — modify_tasks、路径冲突、streaming、错用数据集、tasks.jsonl 格式
+6. [SmolVLA 模型训练](06-model-training.md) — 高 LR、数据增强、错用 base model、续训 LR、optimizer config、HF_HUB_OFFLINE、pretrained_model 子目录、wandb
+7. [SmolVLA 模型推理](07-inference.md) — Chunk Size=1、wrist_roll 锁定、HF 加载、频率选择、端口冲突、摄像头朝向、DATASET_DIR
+8. [附录](08-appendix.md) — 命令、路径、参数、模型版本、conda 环境、硬件速查

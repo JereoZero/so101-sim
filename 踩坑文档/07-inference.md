@@ -17,7 +17,7 @@ action_list = [action]  # 只有 1 步
 模型 `predict_action_chunk()` 返回 `[50, 6]` 的张量（chunk_size=50），但只取了第一步。
 
 ### 影响
-- 客户端每帧都触发推理（30Hz），而不是 10Hz
+- 客户端被迫每帧都触发推理（本该利用 chunk 降频推理）
 - Socket 通信延迟导致动作卡顿
 - 完全浪费了 chunk 预测的优势
 
@@ -28,7 +28,7 @@ action_chunk = action_tensor.squeeze(0).cpu().numpy()
 action_list = action_chunk.flatten().tolist()  # [50*6] 扁平列表
 ```
 
-修复后实现 10Hz 推理 + 30Hz 执行 + Receding Horizon 队列管理。
+修复后实现 Receding Horizon 队列管理：30Hz 执行 + 新推理到达即替换旧队列，动作连续不间断。
 
 ---
 
@@ -130,3 +130,50 @@ DATASET_DIR 仍指向 ACT 数据集路径，而非 SmolVLA 数据集。
 ```python
 DATASET_DIR = "/home/jer/ws_issac/ws/j_so101_sim2real_touch/datasets/sim_lerobot_smolvla"
 ```
+
+---
+
+## ACT 推理额外问题
+
+以下坑来自 ACT 模型推理阶段的排查记录，与 SmolVLA 推理对比参考。
+
+### ACT 坑 1：机械臂原地不动（模型输出与当前位置几乎相同）
+
+**现象**：ACT 模型输出 action 与当前 joint_state 差值仅 0.01-0.12 弧度，机械臂几乎不移动。
+
+**可能原因**：
+1. **训练数据多样性不足**（最可能）：100 条 episode 路径过于相似，模型学到了"保持当前位置"的平均行为
+2. **标准化/反标准化问题**：训练 stats 与推理时不一致
+3. **模型过拟合**：40000 步训 100 条数据可能过拟合
+
+**验证方法**：
+- 手动将机械臂拖到不同起始位置，观察模型是否输出不同的 action
+- 打印输入 state 和输出 action 的差值
+- 打印标准化后的 state 和预测 chunk
+
+### ACT 坑 2：数据流格式一致性
+
+**已验证正确的环节**：
+
+图像数据：
+```python
+# 录制时
+cam1_rgb = wrist_camera.data.output["rgb"][0].cpu().numpy()  # RGB, uint8
+
+# 推理客户端发送
+cam1_np = cv2.cvtColor(cv2.imdecode(...), cv2.COLOR_BGR2RGB)  # RGB
+```
+
+State 数据：录制和推理时均为 `robot.data.joint_pos.cpu().numpy()[0].tolist()`，6 个关节角度。
+
+Observation 构建：键名使用 `"shoulder_pan.pos"` 等带 `.pos` 后缀的格式，与训练时一致。
+
+### ACT vs SmolVLA 推理对比
+
+| 特性 | ACT | SmolVLA |
+|---|---|---|
+| 推理端口 | 9876 | 9877 |
+| 模型加载 | `HUPSingleArmACTInference()` | `SmolVLAPolicy.from_pretrained()` |
+| 标准化 | 手动 normalize/unnormalize | 模型内置 postprocess |
+| Chunk 管理 | `select_action()` 内部管理 | 手动 `predict_action_chunk()` |
+| 任务描述 | 不需要 | 需要（通过 DATASET_DIR stats） |

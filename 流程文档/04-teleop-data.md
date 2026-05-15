@@ -23,9 +23,9 @@ so101_sim_with_comm.py → robot.set_joint_position_target()
 ```bash
 export DISPLAY=:0
 cd /home/jer/ws_issac/thirdparty/IsaacLab
-conda activate isaaclab
+conda activate lerobot_issac
 export ISAACSIM_ASSETS_PATH=~/isaacsim/Assets/Assets/Isaac/5.1
-./isaaclab.sh -p /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_sim_data_collection.py --enable_cameras
+./isaaclab.sh -p /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_sim_with_comm.py --enable_cameras
 ```
 
 ### 终端2 — 真机遥操作客户端
@@ -72,7 +72,7 @@ python /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_real_teleop_client
 
 ## 数据集规格
 
-最终录制了 **100 个 episodes**，用于 ACT 训练：
+最终录制了 **100 个 episodes**，用于 ACT 和 SmolVLA 模型训练：
 
 | 指标 | 数值 |
 |---|---|

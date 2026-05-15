@@ -2,7 +2,7 @@
 
 ## 项目背景
 
-SO101 Sim 项目致力于在 Isaac Sim 仿真环境中，使用 LeRobot + SmolVLA 框架，完成 SO101 双臂机械臂从遥操作数据录制到模型训练再到仿真推理的完整闭环。
+SO101 Sim 项目致力于在 Isaac Sim 仿真环境中，使用 LeRobot + SmolVLA 框架，完成 SO101 单臂六轴机械臂从遥操作数据录制到模型训练再到仿真推理的完整闭环。
 
 本项目是 [so101-real](https://github.com/JereoZero/so101-real) 真机项目的姊妹项目，专注于**仿真端**工作。
 

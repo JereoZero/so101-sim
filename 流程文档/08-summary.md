@@ -27,7 +27,7 @@
 ```
 1. Isaac Sim 场景搭建     ← 物理材质优化，关节驱动配置
 2. 遥操作数据录制          ← TCP 真机→仿真，100 episodes
-3. ACT→SmolVLA 转换       ← modify_tasks() 添加语言描述
+3. HDF5→LeRobot→SmolVLA 转换 ← modify_tasks() 添加语言描述
 4. 多版本迭代训练          ← LR 从 1e-4 到 1e-5，关闭增强
 5. TCP 推理闭环            ← Chunk 队列 + Receding Horizon
 6. 持续优化                ← 换基础模型，超低 LR 续训
@@ -71,5 +71,5 @@
 ## 参考
 
 - [so101-real](https://github.com/JereoZero/so101-real) — 真机端姊妹项目
-- [SmolVLA 论文](https://huggingface.co/huggingface/SmolVLM2-500M-Video-Instruct)
+- [SmolVLA](https://huggingface.co/huggingface/SmolVLA) — 使用的 VLA 模型
 - [子豪兄SO101教程](https://zihao-ai.feishu.cn/wiki/TS6swApHbinx01kHDi5cf5n5n8c)

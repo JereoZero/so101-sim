@@ -55,10 +55,11 @@ nvidia-smi
 
 | 环境 | 用途 | 关键操作 |
 |---|---|---|
-| `isaaclab` | 仿真 | `./isaaclab.sh` 启动仿真 |
+| `isaaclab` | Isaac Sim + Isaac Lab | — |
+| `lerobot_issac` | 仿真运行（含 LeRobot） | `./isaaclab.sh` 启动仿真 |
 | `lerobot` | SmolVLA 训练/推理 | `lerobot-train`、模型服务器 |
 
-训练和推理服务器的脚本必须从 lerobot 环境启动，仿真从 isaaclab 环境启动。
+仿真（遥操作、推理客户端）从 `lerobot_issac` 环境启动，训练和推理服务器从 `lerobot` 环境启动。
 
 ---
 

@@ -2,19 +2,74 @@
 
 ## 概述
 
-录制好的 ACT 格式数据集需要转换为 SmolVLA 格式，主要是添加**语言任务描述**，使模型能够理解自然语言指令。
+数据预处理分为两步：
+1. **HDF5 → LeRobot 格式**：将仿真录制的 HDF5 文件转换为 LeRobot v3.0 格式（Parquet + Videos）
+2. **LeRobot → SmolVLA 格式**：通过 `modify_tasks()` 添加语言任务描述
 
-## 转换流程
+## 完整转换流程
 
 ```
-ACT 数据集 (sim_lerobot_act)
-         ↓ convert_act_to_smolvla.py
+仿真录制 HDF5
+     ↓ hdf5_to_lerobot_v3.py
+LeRobot v3.0 数据集 (sim_lerobot_act)
+     ↓ convert_act_to_smolvla.py
 SmolVLA 数据集 (sim_lerobot_smolvla)
-         ↓ lerobot-train
+     ↓ lerobot-train
 SmolVLA 模型
 ```
 
-## 转换脚本
+---
+
+## 步骤 1：HDF5 → LeRobot 格式
+
+### 脚本
+
+`hdf5_to_lerobot_v3.py` 是一个轻量转换器，不需要 Isaac AppLauncher 或 leisaac 模块。
+
+```bash
+conda activate lerobot
+python /home/jer/ws_issac/ws/j_so101_sim2real_touch/docs/hdf5_to_lerobot_v3.py \
+    --hdf5_file /path/to/dataset.hdf5 \
+    --output_dir /path/to/sim_lerobot_act \
+    --repo_id local/sim_act_test \
+    --fps 30 \
+    --task pick_and_place \
+    --cameras camera1 camera2
+```
+
+### 核心逻辑
+
+脚本读取 HDF5 中的数据，构建 LeRobot 数据集：
+
+```python
+with h5py.File(hdf5_file, "r") as f:
+    for demo_name in f["data"]:
+        actions = demo["actions"][:]
+        states = demo["states/articulation/robot/joint_position"][:]
+        initial_state = demo["initial_state/articulation/robot/joint_position"][0]
+        cam_images = {cam: demo[f"obs/{cam}"][:] for cam in cameras}
+
+        for t in range(n_steps):
+            # t=0 用 initial_state，其余用 t-1 帧的 state
+            cur_state = initial_state if t == 0 else states[t - 1]
+            frame = {
+                "observation.state": cur_state,
+                "action": actions[t],
+                "task": "pick_and_place",
+            }
+            ds.add_frame(frame)
+        ds.save_episode()
+```
+
+### 关键：State 帧的时序关系
+
+第 t 帧的 `observation.state` = 执行 action 之前的关节位置（即第 t-1 步的 state），因为 LeRobot 的数据格式是 `(obs_t, action_t)` 对。第一帧的 state 使用 episode 的 `initial_state`。
+
+---
+
+## 步骤 2：LeRobot → SmolVLA 格式
+
+### 转换脚本
 
 使用 LeRobot 官方的 `modify_tasks()` API 进行转换：
 
@@ -31,14 +86,14 @@ python /home/jer/ws_issac/ws/j_so101_sim2real_touch/docs/convert_act_to_smolvla.
 
 ## 数据集结构对比
 
-| 特性 | ACT 格式 | SmolVLA 格式 |
+| 特性 | sim_lerobot_act | sim_lerobot_smolvla |
 |---|---|---|
 | 任务描述 | 无 | "put small orange block in plate" |
 | episodes | 100 | 100 |
 | 帧数 | ~35913 | ~35913 |
 | 图像 | 640×480 RGB | 640×480 RGB |
 | 动作 | 6 关节 | 6 关节 |
-| 格式 | HDF5 + Parquet | HDF5 + Parquet + tasks.jsonl |
+| 格式 | Parquet + Videos | Parquet + Videos + tasks.jsonl |
 
 ## SmolVLA 数据集目录结构
 

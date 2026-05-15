@@ -1,4 +1,4 @@
-# 05 — ACT → SmolVLA 数据集转换
+# 05 — 数据集格式转换（HDF5 → LeRobot → SmolVLA）
 
 ## 坑 1：modify_tasks() 不生效
 

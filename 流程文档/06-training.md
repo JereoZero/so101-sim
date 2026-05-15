@@ -25,7 +25,6 @@ v6 是目前表现最好的版本，以下是训练详情。
 ### 训练命令
 
 ```bash
-cd /home/jer/ws_issac/thirdparty/IsaacLab
 conda activate lerobot
 
 HF_HUB_OFFLINE=1 lerobot-train \

@@ -1,48 +1,12 @@
-# 项目流程 — 索引
+# 流程文档索引
 
-本文档按时间顺序记录 SO101 仿真项目的完整流程，每个阶段独立成篇。
+完整项目流程记录，按阶段拆分：
 
----
-
-## [01 — 项目概述](01-project-overview.md)
-- 项目背景与目标
-- 技术选型
-- 整体架构
-
-## [02 — 环境搭建](02-env-setup.md)
-- Isaac Sim + Isaac Lab 安装
-- Conda 环境配置
-- LeRobot 框架配置
-- 第三方库配置
-
-## [03 — 仿真场景搭建](03-sim-scene.md)
-- 桌子、地面、灯光等基础场景元素
-- SO101 URDF 导入与配置
-- 双摄像头（腕部 + 第三视角）配置
-- 方块、盘子等操作对象的物理参数
-
-## [04 — 遥操作与数据录制](04-teleop-data.md)
-- 真机主臂 → 仿真从臂遥操作
-- 数据录制流程
-- 数据集版本管理
-
-## [05 — 数据集预处理](05-dataset-preprocess.md)
-- ACT 数据集结构
-- SmolVLA 格式转换
-- 任务描述添加
-
-## [06 — 模型训练](06-training.md)
-- SmolVLA 训练流程
-- 多个训练版本迭代记录
-- 训练参数演变
-
-## [07 — 模型推理](07-inference.md)
-- TCP 客户端-服务器架构
-- Chunk 队列管理
-- 推理频率与性能优化
-- 多模型版本对比
-
-## [08 — 项目总结](08-summary.md)
-- 训练结果汇总
-- 最优 checkpoint 对比
-- 经验教训与下一步计划
+1. [项目概述](01-project-overview.md) — 项目背景、技术栈、训练版本表
+2. [环境搭建](02-env-setup.md) — Conda 环境、Isaac Lab 路径、LeRobot 框架、SO101 URDF、硬件
+3. [仿真场景搭建](03-sim-scene.md) — 场景层级、物理材质、LeRobot 修改、摄像头、物体随机化
+4. [遥操作与数据录制](04-teleop-data.md) — TCP 遥操作架构、运行命令、键盘快捷键、HDF5 录制
+5. [数据集预处理](05-dataset-preprocess.md) — HDF5→LeRobot 转换、LeRobot→SmolVLA 转换、modify_tasks()
+6. [模型训练](06-training.md) — 全部训练版本、v6 基线命令、训练结果、经验教训
+7. [模型推理](07-inference.md) — TCP 推理架构、chunk 队列管理、receding horizon、Chunk Size 陷阱
+8. [项目总结](08-summary.md) — 训练结果汇总、checkpoint 对比、关键经验
