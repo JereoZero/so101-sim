@@ -12,8 +12,8 @@
 
 激活环境示例：
 ```bash
-conda activate isaaclab   # 仿真
-conda activate lerobot    # 训练
+conda activate lerobot_issac   # 仿真（含 LeRobot）
+conda activate lerobot         # 训练
 ```
 
 ## Isaac Lab 安装
@@ -62,7 +62,7 @@ export IsaacSim_ROOT=~/isaacsim/Assets/Assets/Isaac/5.1
 仿真中的 SO101 模型来自 `isaac_so_arm101` 包：
 ```
 /home/jer/ws_issac/thirdparty/isaac_so_arm101/src/isaac_so_arm101/robots/trs_so101/
-├── so_arm101.py          ← 机器人配置（含物理材质修改）
+├── so_arm101.py          ← 机器人配置
 └── so_arm101.urdf        ← URDF 模型
 ```
 

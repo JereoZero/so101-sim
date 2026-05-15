@@ -53,7 +53,7 @@ export ISAACSIM_ASSETS_PATH=~/isaacsim/Assets/Assets/Isaac/5.1
 ```
 模型预测 [50, 6] chunk
     → 服务器返回完整列表
-    → 客户端取前 50 步加入队列
+    → 客户端取全部 50 步加入队列
     → 每步 pop 队列头并执行
     → 新推理到达后直接替换整个队列（receding horizon）
     → 仿真以 30Hz 频率执行
@@ -115,7 +115,7 @@ action_list = action_chunk.flatten().tolist()  # 返回完整 chunk
 | chunk_size | 50 | 模型预测 50 步 |
 | 推理频率 | 30Hz（当前），可调至 10Hz | receding horizon |
 | 执行频率 | 30Hz | 仿真帧率 |
-| 分辨率 | 640×480 | 与录制时对齐 |
+| 分辨率 | 640×480 | 推理时分辨率 |
 | 端口 | 9877 | 与 ACT(9876) 区分 |
 | max_steps | 1800 | 每 episode 上限 |
 

@@ -68,7 +68,7 @@ step:20K smpl:720K ep:2K epch:20.05 loss:0.038 grdn:0.439 lr:2.5e-06 updt_s:1.04
 
 | 参数 | v0 | v4+ | 说明 |
 |---|---|---|---|
-| `steps` | 40000 | 20000 | 降低总步数 |
+| `steps` | 18000 | 20000 | v0 实际只到 18000 |
 | `optimizer_lr` | 1e-4 | 1e-5 | 降低 10 倍，避免震荡 |
 | `image_transforms` | true | **false** | **关闭数据增强** |
 | `batch_size` | 36 | 36 | 不变 |

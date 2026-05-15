@@ -28,7 +28,7 @@ SmolVLA 模型
 
 ```bash
 conda activate lerobot
-python /home/jer/ws_issac/ws/j_so101_sim2real_touch/docs/hdf5_to_lerobot_v3.py \
+python /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/hdf5_to_lerobot_v3.py \
     --hdf5_file /path/to/dataset.hdf5 \
     --output_dir /path/to/sim_lerobot_act \
     --repo_id local/sim_act_test \

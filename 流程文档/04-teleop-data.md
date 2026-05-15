@@ -66,8 +66,8 @@ python /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_real_teleop_client
 ```
 
 每帧包含：
-- **腕部摄像头图像**（640×480 RGB）
-- **第三视角摄像头图像**（640×480 RGB）
+- **腕部摄像头图像**（160×120 RGB）
+- **第三视角摄像头图像**（160×120 RGB）
 - **关节动作**（6 个关节目标角度，弧度）
 - **关节状态**（6 个关节当前位置，弧度）
 
@@ -79,7 +79,7 @@ python /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_real_teleop_client
 |---|---|
 | 总 episodes | 100 |
 | 总帧数 | ~35913 |
-| 图像分辨率 | 640×480 |
+| 图像分辨率 | 160×120（采集）/ 640×480（推理） |
 | 帧率 | 30fps |
 | 任务 | 抓取方块放入盘子 |
 
