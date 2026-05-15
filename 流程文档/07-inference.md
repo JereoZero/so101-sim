@@ -115,7 +115,7 @@ action_list = action_chunk.flatten().tolist()  # 返回完整 chunk
 | chunk_size | 50 | 模型预测 50 步 |
 | 推理频率 | 30Hz（当前），可调至 10Hz | receding horizon |
 | 执行频率 | 30Hz | 仿真帧率 |
-| 分辨率 | 640×480 | 推理时分辨率 |
+| 分辨率 | 640×480 | 模型自动 resize 到 512×512，采集/推理分辨率可不一致 |
 | 端口 | 9877 | 与 ACT(9876) 区分 |
 | max_steps | 1800 | 每 episode 上限 |
 
