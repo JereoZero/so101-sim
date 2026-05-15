@@ -5,7 +5,7 @@ SmolVLA 推理客户端 - 运行在 Isaac Sim 环境中
 
 运行命令：
 cd /home/jer/ws_issac/thirdparty/IsaacLab
-conda activate isaaclab
+conda activate lerobot_issac
 export ISAACSIM_ASSETS_PATH=~/isaacsim/Assets/Assets/Isaac/5.1
 ./isaaclab.sh -p /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/smolvla_inference_client.py --enable_cameras
 """

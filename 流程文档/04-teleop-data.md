@@ -25,12 +25,14 @@ export DISPLAY=:0
 cd /home/jer/ws_issac/thirdparty/IsaacLab
 conda activate lerobot_issac
 export ISAACSIM_ASSETS_PATH=~/isaacsim/Assets/Assets/Isaac/5.1
-./isaaclab.sh -p /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_sim_with_comm.py --enable_cameras
+./isaaclab.sh -p /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_sim_camera_server.py --enable_cameras
 ```
 
-### 终端2 — 真机遥操作客户端
+### 终端2 — 真机遥操作客户端（lerobot_issac 环境）
 
 ```bash
+export PYTHONPATH=/home/jer/ws_issac/thirdparty/lerobot-0.5.0/src:$PYTHONPATH
+cd /home/jer/ws_issac/thirdparty/IsaacLab
 conda activate lerobot_issac
 python /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_real_teleop_client.py
 ```

@@ -4,7 +4,7 @@ SO101 仿真 + 通信服务器（带摄像头）- IsaacLab 环境
 运行命令：
 终端1:
 cd /home/jer/ws_issac/thirdparty/IsaacLab
-conda activate isaaclab
+conda activate lerobot_issac
 export ISAACSIM_ASSETS_PATH=~/isaacsim/Assets/Assets/Isaac/5.1
 ./isaaclab.sh -p /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_sim_camera_server.py --enable_cameras
 
@@ -275,7 +275,7 @@ def main():
     wrist_camera = entities["wrist_camera"]
     overhead_camera = entities["overhead_camera"]
     print("✅ 场景设计完成!")
-    print("   - 木桌: 100cm x 50cm x 75cm, kinematic固定")
+    print("   - 木桌: 100cm x 100cm x 75cm, kinematic固定")
     print("   - 方块: 3.5cm, 重量50g, 高摩擦材质")
     print("   - 盘子: 直径8cm, kinematic固定")
     print("   - 腕部摄像头: 160x120, 30FPS")
@@ -306,7 +306,7 @@ def main():
 
     try:
         while sim_app.is_running():
-            if count % 500 == 0:
+            if count == 0:
                 count = 0
                 root_state = robot.data.default_root_state.clone()
                 root_state[:, :3] += origins

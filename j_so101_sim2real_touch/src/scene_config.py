@@ -151,7 +151,8 @@ def create_wrist_camera():
 
 
 def create_overhead_camera():
-    """创建第三视角摄像头（位置(0.9,-0.05,1.12)，欧拉角(16°,38°,76°)）"""
+    """创建第三视角摄像头（通过 CameraTripod Xform 定位，offset 只设旋转）"""
+    sim_utils.create_prim("/World/CameraTripod", "Xform", translation=(0.9, -0.05, 1.12))
     overhead_camera_cfg = CameraCfg(
         prim_path="/World/CameraTripod/camera_third_person",
         update_period=0.033,
@@ -165,9 +166,8 @@ def create_overhead_camera():
             clipping_range=(0.01, 2.0),
         ),
         offset=CameraCfg.OffsetCfg(
-            pos=(0.9, -0.05, 1.12),
-            rot=(0.766, -0.095, 0.335, 0.541),
-            convention="ros",
+            pos=(0.0, 0.0, 0.0),
+            rot=(-0.1895, 0.7471, 0.6277, -0.1089),
         ),
     )
     return Camera(cfg=overhead_camera_cfg)
