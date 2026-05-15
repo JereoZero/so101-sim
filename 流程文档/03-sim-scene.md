@@ -2,19 +2,19 @@
 
 ## 场景概览
 
-仿真场景由 `so101_sim_data_collection.py`（后拆分为 `so101_sim_with_comm.py`）构建，包含以下元素：
+仿真场景由 `so101_sim_camera_server.py` 构建，包含以下元素：
 
 ```
 场景层级：
   World/
   ├── 地面（哑光灰色地砖）
-  ├── 灯光（DomeLight + 聚光灯）
-  ├── 桌子（100cm × 50cm，高 75cm，浅橡木色）
+  ├── 灯光（DomeLight）
+  ├── 桌子（100cm × 100cm，高 75cm，浅橡木色）
   ├── SO101 机器人（URDF 导入）
   ├── 小方块（3.5cm 边长，随机位置）
-  ├── 小盘子（8.5cm 直径，随机位置）
-  ├── 腕部摄像头（GC0308，640×480，30fps）
-  └── 第三视角摄像头（GC2083，640×480，30fps）
+  ├── 小盘子（直径 8cm，随机位置）
+  ├── 腕部摄像头（GC0308，160×120，30fps）
+  └── 第三视角摄像头（GC2083，160×120，30fps）
 ```
 
 ## 场景参数
@@ -23,9 +23,9 @@
 
 | 参数 | 值 |
 |---|---|
-| 尺寸 | 100cm × 50cm × 2cm |
+| 尺寸 | 100cm × 100cm × 75cm |
 | 高度 | 75cm |
-| 颜色 | 浅橡木色 (0.82, 0.71, 0.57) |
+| 颜色 | 浅橡木色 (0.6, 0.4, 0.2) |
 | 物理材质 | 木质（静摩擦 0.8，动摩擦 0.6） |
 
 ### 机器人
@@ -80,18 +80,6 @@
 - `solver_position_iteration_count`: 8 → 16
 - `solver_velocity_iteration_count`: 0 → 1
 - `max_depenetration_velocity`: 10.0
-
-## 源码文件
-
-场景构建的核心源码：
-
-| 文件 | 职责 |
-|---|---|
-| `so101_sim_with_comm.py` | 主入口，场景构建 + 仿真循环 |
-| `tcp_server.py` | TCP 通信，接收遥操作指令 |
-| `hdf5_recorder.py` | HDF5 数据录制 |
-| `robot_config.py` | 关节限位 + 角度裁剪 |
-| `physics_config.py` | 物理材质配置 |
 
 ## LeRobot 源码修改
 

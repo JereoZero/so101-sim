@@ -97,8 +97,8 @@ step:20K smpl:720K ep:2K epch:20.05 loss:0.038 grdn:0.439 lr:2.5e-06 updt_s:1.04
 
 ```
 models/
-├── smolvla_sim_v0/    ← v0（40000步）
-├── smolvla_sim_v1/    ← v1（10000步）
+├── smolvla_sim_v0/    ← v0（18000步）
+├── smolvla_sim_v1/    ← v1（2000步）
 ├── smolvla_sim_v4/    ← v4（20000步）
 ├── smolvla_sim_v5/    ← v5（4000步）
 ├── smolvla_sim_v6/    ← v6（20000步）★ 推荐

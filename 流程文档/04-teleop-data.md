@@ -11,9 +11,8 @@ LeRobot teleoperate
     ↓ 读取关节角度
 so101_real_teleop_client.py
     ↓ TCP :8765
-tcp_server.py (Isaac Sim 内)
-    ↓ joint_pos_target
-so101_sim_with_comm.py → robot.set_joint_position_target()
+so101_sim_camera_server.py (Isaac Sim 内)
+    ↓ clip_joint_angles → robot.set_joint_position_target()
 ```
 
 ## 运行命令
