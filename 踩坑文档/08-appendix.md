@@ -84,7 +84,7 @@ rm -rf /tmp/IsaacLab/
 |---|---|
 | 模型 | smolvla_sim_v6/020000 |
 | chunk_size | 50 |
-| 推理频率 | 10Hz (receding) |
+| 推理频率 | 30Hz（可调至 10Hz） | receding horizon |
 | 执行频率 | 30Hz |
 | 摄像头分辨率 | 640×480 |
 | 服务器端口 | 9877 |

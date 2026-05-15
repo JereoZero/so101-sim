@@ -51,7 +51,7 @@ export IsaacSim_ROOT=~/isaacsim/Assets/Assets/Isaac/5.1
 | `/home/jer/ws_issac/thirdparty/lerobot-0.5.0` | 官方源码 |
 | `~/miniconda3/envs/lerobot/lib/python3.12/site-packages/lerobot` | lerobot 环境 |
 
-安装完 LeRobot 后，需要应用源代码修改（见 [LeRobot 源码修改](../doc/LEROBOT_MODIFICATIONS.md)）。
+安装完 LeRobot 后，需要应用 5 处源代码修改，详见 [03-仿真场景搭建](03-sim-scene.md) 的「LeRobot 源码修改」章节。
 
 ## SO101 URDF
 

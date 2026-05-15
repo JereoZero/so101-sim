@@ -78,8 +78,8 @@ self.policy = SmolVLAPolicy.from_pretrained(str(pretrained_dir))
 |---|---|---|
 | 30Hz | 10 | 推理请求过多，仿真卡顿 |
 | 3Hz | 10→50 | 队列空等待时间长，动作停顿 |
-| 10Hz | 50 (receding) | ✅ 最佳：流畅 + 及时更新 |
-| 每帧 (30Hz) | 50 (receding) | 推理负担重，但机械臂控制流畅 |
+| 10Hz | 50 (receding) | 流畅 + 及时更新 |
+| 30Hz | 50 (receding) | ✅ 当前配置，最灵敏 |
 
 ### 当前最佳配置
 - **执行**：30Hz（仿真帧率）

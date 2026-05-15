@@ -61,10 +61,12 @@ export ISAACSIM_ASSETS_PATH=~/isaacsim/Assets/Assets/Isaac/5.1
 
 ### Receding Horizon 控制
 
-每 3 帧（30fps / 3 = 10Hz）发起一次新推理：
+当前设置为每帧推理（30Hz），可通过修改 `INFERENCE_INTERVAL` 调整：
+- `INFERENCE_INTERVAL = 1`：30Hz 推理，动作最灵敏（当前）
+- `INFERENCE_INTERVAL = 3`：10Hz 推理，减小服务器负载
 - 新推理到达后**直接替换旧队列**
 - 动作连续不间断
-- 仿真始终以 30Hz 频率运行
+- 仿真始终以 30Hz 频率执行
 
 ## 模型切换
 
@@ -111,7 +113,7 @@ action_list = action_chunk.flatten().tolist()  # 返回完整 chunk
 | 模型 | smolvla_sim_v6/020000 | 推荐版本 |
 | 任务描述 | "put small orange block in plate" | 语言指令 |
 | chunk_size | 50 | 模型预测 50 步 |
-| 推理频率 | 10Hz（可调至 30Hz） | receding horizon |
+| 推理频率 | 30Hz（当前），可调至 10Hz | receding horizon |
 | 执行频率 | 30Hz | 仿真帧率 |
 | 分辨率 | 640×480 | 与录制时对齐 |
 | 端口 | 9877 | 与 ACT(9876) 区分 |

@@ -59,7 +59,7 @@
 ### 6. 推理架构
 - TCP 双终端分离模型加载和仿真渲染
 - Receding Horizon 保证动作连续性
-- 10Hz 推理 + 30Hz 执行是最佳平衡
+- 30Hz 推理 + 30Hz 执行（可通过 INFERENCE_INTERVAL 调节）
 
 ## 下一步计划
 
