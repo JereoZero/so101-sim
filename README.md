@@ -7,7 +7,6 @@
 ## 目录结构
 
 ```
-ws/
 ├── README.md                    ← 本文件
 ├── .gitignore
 ├── 踩坑文档/                    ← 仿真项目全过程踩坑记录（按章节拆分）
@@ -16,7 +15,7 @@ ws/
 │   ├── 02-urdf-import.md        ← 2. SO101 URDF 导入与适配
 │   ├── 03-robot-control.md      ← 3. 仿真中 SO101 运动控制
 │   ├── 04-data-collection.md    ← 4. 仿真数据录制
-│   └── 05-dataset-convert.md    ← 5. 数据集格式转换
+│   ├── 05-dataset-convert.md    ← 5. 数据集格式转换
 │   ├── 06-model-training.md     ← 6. SmolVLA 模型训练
 │   ├── 07-inference.md          ← 7. SmolVLA 模型推理
 │   └── 08-appendix.md           ← 附录（命令、路径、参数速查）
@@ -26,15 +25,12 @@ ws/
 │   ├── 02-env-setup.md          ← 2. 环境搭建
 │   ├── 03-sim-scene.md          ← 3. 仿真场景搭建
 │   ├── 04-teleop-data.md        ← 4. 遥操作与数据录制
-│   └── 05-dataset-preprocess.md ← 5. 数据集预处理
+│   ├── 05-dataset-preprocess.md ← 5. 数据集预处理
 │   ├── 06-training.md           ← 6. 模型训练
 │   ├── 07-inference.md          ← 7. 模型推理
 │   └── 08-summary.md            ← 8. 项目总结
 └── j_so101_sim2real_touch/      ← 源码（模型/数据集不上传）
-    ├── src/                     ← 核心源码（45 个文件）
-    ├── configs/                 ← 配置文件
-    ├── scripts/                 ← 脚本
-    └── tests/                   ← 测试代码
+    └── src/                     ← 核心源码
 ```
 
 ## 项目概述
