@@ -12,7 +12,7 @@
 仿真录制 HDF5
      ↓ hdf5_to_lerobot_v3.py
 LeRobot v3.0 数据集 (sim_lerobot_act)
-     ↓ convert_act_to_smolvla.py
+     ↓ modify_tasks()
 SmolVLA 数据集 (sim_lerobot_smolvla)
      ↓ lerobot-train
 SmolVLA 模型
@@ -71,11 +71,17 @@ with h5py.File(hdf5_file, "r") as f:
 
 ### 转换脚本
 
-使用 LeRobot 官方的 `modify_tasks()` API 进行转换：
+使用 `modify_tasks()` API 直接转换：
 
 ```bash
 conda activate lerobot
-python /home/jer/ws_issac/ws/j_so101_sim2real_touch/docs/convert_act_to_smolvla.py
+python -c "
+from lerobot.datasets import LeRobotDataset
+from lerobot.datasets.utils import modify_tasks
+
+act_dataset = LeRobotDataset('local/sim_act_test', root='/path/to/sim_lerobot_act')
+modify_tasks(act_dataset, new_task='put small orange block in plate')
+"
 ```
 
 脚本核心逻辑：

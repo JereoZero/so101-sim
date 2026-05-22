@@ -2,7 +2,7 @@
 
 ## 场景概览
 
-仿真场景由 `so101_sim_camera_server.py` 构建，包含以下元素：
+仿真场景由 `so101_sim_data_collection.py` 构建（调用 `scene_config.py` 中的 `design_scene()`），包含以下元素：
 
 ```
 场景层级：

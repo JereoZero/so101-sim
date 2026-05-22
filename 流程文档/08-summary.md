@@ -11,6 +11,8 @@
 | **v6** | **smolvla_base_migrated** | **20000** | **0.038** | **最佳** ★ |
 | v7 | smolvla_sim_v6/020000 | 8000 | — | 待评估 |
 
+> **说明**：v4 训练 Loss (0.033) 最低，但 v6 的迁移基础模型泛化能力更好，推理实测表现最佳。
+
 ## 最优 Checkpoint 对比
 
 | Checkpoint | Loss | 备注 |

@@ -55,14 +55,15 @@ python /home/jer/ws_issac/ws/j_so101_sim2real_touch/src/so101_real_teleop_client
 
 ## 数据格式
 
-数据以 HDF5 格式保存：
+数据以 HDF5 格式保存，所有 episode 存储在同一个文件中：
 
 ```
 /home/jer/ws_issac/ws/j_so101_sim2real_touch/datasets/hdf5_sim_block_act_test/
-├── episode_00000.hdf5
-├── episode_00001.hdf5
-├── ...
-└── episode_00099.hdf5
+└── dataset.hdf5
+    ├── data/
+    │   ├── demo_0/   (actions, states, initial_state, obs/camera1, obs/camera2)
+    │   ├── demo_1/
+    │   └── ...
 ```
 
 每帧包含：

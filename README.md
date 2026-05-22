@@ -53,7 +53,7 @@
 | 算法 | SmolVLA（Vision-Language-Action） |
 | 框架 | LeRobot v0.5.0 |
 | 机器人 | SO101 六轴机械臂（仿真 URDF） |
-| 感知 | 双摄像头（腕部 + 第三视角，640x480 RGB） |
+| 感知 | 双摄像头（腕部 + 第三视角，采集160×120 / 推理640×480 RGB） |
 | GPU | NVIDIA RTX 5070 12GB |
 
 ### 项目亮点

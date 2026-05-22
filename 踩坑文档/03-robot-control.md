@@ -41,16 +41,16 @@ def clip_joint_angles(joint_angles):
     return joint_angles
 ```
 
-关节限位配置（弧度）：
+关节限位配置（弧度，来自真机校准数据 `j_leader.json`）：
 
 | 关节 | 下限 | 上限 |
 |---|---|---|
-| shoulder_pan | -2.88 | 2.88 |
-| shoulder_lift | -1.75 | 1.75 |
-| elbow_flex | -2.88 | 2.88 |
-| wrist_flex | -2.88 | 2.88 |
-| wrist_roll | -3.14 | 3.14 |
-| gripper | -0.17 | 1.75 |
+| shoulder_pan | -1.99 | 1.96 |
+| shoulder_lift | -1.82 | 1.83 |
+| elbow_flex | -1.69 | 1.69 |
+| wrist_flex | -1.79 | 1.79 |
+| wrist_roll | -1.46 | 2.92 |
+| gripper | -0.94 | 0.94 |
 
 ---
 

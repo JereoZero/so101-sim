@@ -23,7 +23,7 @@ SO101 Sim 项目致力于在 Isaac Sim 仿真环境中，使用 LeRobot + SmolVL
 | 算法 | SmolVLA（Vision-Language-Action） |
 | 框架 | LeRobot v0.5.0 |
 | 深度学习 | PyTorch 2.x + CUDA |
-| 机器人 | SO101 六轴机械臂（仿真 URDF） |
+| 机器人 | 幻尔 SoArm101 六轴机械臂（URDF 来自 `thirdparty/SO-ARM100`） |
 | 感知 | 双摄像头（腕部 + 第三视角，采集160×120 / 推理640×480 RGB） |
 | 硬件 | NVIDIA RTX 5070 12GB |
 | 遥操作 | 真机主臂 → TCP → 仿真从臂 |
@@ -39,7 +39,7 @@ SO101 Sim 项目致力于在 Isaac Sim 仿真环境中，使用 LeRobot + SmolVL
 1. **仿真场景搭建**：桌子、灯光、SO101 URDF、方块、盘子、双摄像头
 2. **遥操作数据录制**：真机主臂通过 TCP 控制仿真从臂，录制 100 个 episodes
 3. **数据集预处理**：HDF5 → LeRobot → SmolVLA 格式转换，添加语言任务描述
-4. **模型训练**：多个版本迭代（v0 → v1 → v4 → v5 → v6 → v7），持续优化参数
+4. **模型训练**：基于 SmolVLA 架构，持续迭代优化
 5. **仿真推理闭环**：TCP 客户端-服务器架构，30Hz receding horizon 推理
 
 ## 项目目录
@@ -52,17 +52,6 @@ SO101 Sim 项目致力于在 Isaac Sim 仿真环境中，使用 LeRobot + SmolVL
 ```
 
 > 模型和数据集不上传到 GitHub，仅保留源码和文档。
-
-## 训练版本迭代
-
-| 版本 | 基础模型 | 步数 | 学习率 | 数据增强 | 说明 |
-|---|---|---|---|---|---|
-| v0  | smolvla_v3_infer_18k | 18000 | 1e-4 | ✅ | 初始版本，不稳定 |
-| v1  | smolvla_sim_v0/008000 | 2000 | 1e-5 | ❌ | **路线错误**，用了错误基础模型 |
-| v4  | smolvla_v3_infer_18k | 20000 | 1e-5 | ❌ | 修正路线，关闭增强 |
-| v5  | smolvla_sim_v4/020000 | 4000 | 1e-5 | ❌ | v4 继续微调 |
-| v6  | smolvla_base_migrated | 20000 | 1e-5 | ❌ | 换迁移基础模型 |
-| v7  | smolvla_sim_v6/020000 | 8000 | 2.5e-6 | ❌ | v6 继续微调，超低 LR |
 
 ## 参考项目
 
